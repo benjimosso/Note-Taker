@@ -9,19 +9,27 @@ const { createBrotliCompress } = require('zlib');
 const app = express();
 const PORT = 3000;
 
+const apiRoutes = require('./routes/apiRoutes')
+const htmlRoutes = require('./routes/htmlRoutes')
+
+
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 
-console.log(__dirname)
-const DB = path.resolve(__dirname, 'db.json')
-console.log(DB)
-    // api responses.
+// require('./routes/apiRoutes')(app);
+// require('./routes/htmlRoutes')(app);
 
 
-const database = app.get('/api/notes', (req, res) => res.sendFile(DB));
-app.get('/api/notes', (req, res) => res.json(database));
+app.use(express.static('public'));
+app.use('/api', apiRoutes);
+app.use('/', htmlRoutes);
+
+// console.log(__dirname)
+// const DB = path.resolve(__dirname, 'db.json')
+// console.log(DB)
+//     // api responses.
 
 
 // Starts the server to begin listening
