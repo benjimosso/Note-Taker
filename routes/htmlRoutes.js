@@ -17,9 +17,6 @@ router.get('/notes', (req, res) => {
 // If no matching route is found default to home
 router.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/index.html'));
-    console.log('++++++++++++++++++++++++')
-    console.log(__dirname)
-    console.log('++++++++++++++++++++++++')
 });
 
 module.exports = router

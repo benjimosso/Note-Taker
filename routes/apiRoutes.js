@@ -1,8 +1,12 @@
-const DataBase = require('../db.json')
-const router = require('express').Router()
+const router = require('express').Router();
 
-module.exports = (app) => {
+const path = require('path')
 
-    router.get('/api/notes', (req, res) => res.json(DataBase));
+// connect to data base
 
-}
+router.get('/api/notes', (req, res) => {
+    res.sendFile(path.join(__dirname, '../DataBase/db.json'))
+    console.log(res)
+})
+
+module.exports = router
