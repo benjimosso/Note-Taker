@@ -1,12 +1,31 @@
+// Dependencies
 const router = require('express').Router();
 
-const path = require('path')
+const saveData = require('../DataBase/saveData');
 
-// connect to data base
+// GET request
+router.get('/notes', function (req, res) {
+    saveData
+        .retrieveNotes()
+        .then(notes => res.json(notes))
+        .catch(err => res.status(500).json(err));
+});
 
-router.get('/api/notes', (req, res) => {
-    res.sendFile(path.join(__dirname, '../DataBase/db.json'))
-    console.log(res)
-})
+// POST request
+router.post('/notes', (req, res) => {
+    saveData
+        .addNote(req.body)
+        .then((note) => res.json(note))
+        .catch(err => res.status(500).json(err));
+});
 
-module.exports = router
+// Bonus - DELETE request
+router.delete('/notes/:id', function (req, res) {
+    saveData
+        .deleteNote(req.params.id)
+        .then(() => res.json({ ok: true }))
+        .catch(err => res.status(500).json(err));
+});
+
+
+module.exports = router;
