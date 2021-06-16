@@ -16,3 +16,9 @@ https://blooming-gorge-79206.herokuapp.com/
 
 Screenshot:
 ![Screenshot](https://github.com/benjimosso/Note-Taker/blob/main/images/Screenshot.PNG)
+
+## Author
+Daniel Mosso
+
+## License
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
